@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import FactItem from './ItemFact';
+import ItemFact from './ItemFact';
+import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 
 const BuscarFacts = ({ addToFavorites }) => {
     const [query, setQuery] = useState('');
@@ -13,26 +14,35 @@ const BuscarFacts = ({ addToFavorites }) => {
             setFacts(response.data.result);
             setError(null);
         } catch (err) {
-            setError('Error al obtener datos');
+            setError('Error al obtener los factos');
         }
     };
 
     return (
-        <div>
-            <h1>Busca Facts de Chuck Norris</h1>
-            <input
-                type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-            />
-            <button onClick={searchFacts}>Buscar</button>
-            {error && <p>{error}</p>}
+        <Container>
             <div>
-                {facts.map((fact) => (
-                    <FactItem key={fact.id} fact={fact} addToFavorites={addToFavorites} />
-                ))}
+                <h1>Busca Facts de Chuck Norris</h1>
+                <Form>
+                    <Form.Group controlId="formQuery">
+                        <Form.Control
+                            type="text"
+                            placeholder="Ingresa una palabra clave"
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Button variant="primary" onClick={searchFacts}>Buscar</Button>
+                </Form>
+                {error && <Alert variant="danger">{error}</Alert>}
+                <Row>
+                    {facts.map((fact) => (
+                        <Col key={fact.id} sm={12} md={6} lg={4}>
+                            <ItemFact fact={fact} addToFavorites={addToFavorites} />
+                        </Col>
+                    ))}
+                </Row>
             </div>
-        </div>
+        </Container>
     );
 };
 

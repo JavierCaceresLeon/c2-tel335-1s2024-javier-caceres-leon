@@ -1,29 +1,29 @@
 import React from 'react';
-import { Card, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 
 const Favoritos = ({ favorites }) => {
-  return (
-    <div>
-      <h1 className="text-center">Mis favoritos</h1>
-      <Row>
-        {favorites.length === 0 ? (
-          <p className="text-center">Aún no hay favoritos añadidos.</p>
-        ) : (
-          favorites.map((fact) => (
-            <Col md={4} key={fact.id} className="mb-3">
-              <Card>
-                <Card.Body>
-                  <Card.Text>{fact.value}</Card.Text>
-                  <Card.Text><small>Creado el: {new Date(fact.created_at).toLocaleDateString()}</small></Card.Text>
-                  {fact.categories.length > 0 && <Card.Text><small>Categorías: {fact.categories.join(', ')}</small></Card.Text>}
-                </Card.Body>
-              </Card>
-            </Col>
-          ))
-        )}
-      </Row>
-    </div>
-  );
+    return (
+        <Container>
+            <h1>Mis favoritos</h1>
+            {favorites.length === 0 ? (
+                <p>Aún no hay favoritos añadidos.</p>
+            ) : (
+                <Row>
+                    {favorites.map((fact) => (
+                        <Col key={fact.id} sm={12} md={6} lg={4}>
+                            <Card style={{ marginBottom: '20px' }}>
+                                <Card.Body>
+                                    <Card.Text>{fact.value}</Card.Text>
+                                    <Card.Text>Created at: {fact.created_at}</Card.Text>
+                                    {fact.categories.length > 0 && <Card.Text>Categories: {fact.categories.join(', ')}</Card.Text>}
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    ))}
+                </Row>
+            )}
+        </Container>
+    );
 };
 
 export default Favoritos;
