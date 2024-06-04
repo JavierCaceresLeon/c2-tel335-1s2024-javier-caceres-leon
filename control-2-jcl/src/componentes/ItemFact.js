@@ -3,7 +3,7 @@ import { Card, Button } from 'react-bootstrap';
 
 const ItemFact = ({ fact, addToFavorites }) => {
     return (
-        <Card style={{ marginBottom: '20px' }}>
+        <Card style={{ marginBottom: '20px', marginTop: '20px' }}>
             <Card.Body>
                 <Card.Text>{fact.value}</Card.Text>
                 <Card.Text>Created at: {fact.created_at}</Card.Text>

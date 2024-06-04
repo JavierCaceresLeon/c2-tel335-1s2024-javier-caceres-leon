@@ -1,10 +1,11 @@
-import React, { useState, useEffect  } from 'react';
+import React, { useState, useEffect } from 'react';
 import BuscarFacts from './componentes/BuscarFacts';
 import Favoritos from './componentes/Favoritos';
-import { Button, Container, Spinner } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import Header from './componentes/Header';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import HourglassSpinner from './componentes/HourglassSpinner';
 
 const App = () => {
     const [favorites, setFavorites] = useState([]);
@@ -43,7 +44,7 @@ const App = () => {
                     {showFavorites ? 'Buscar Facts' : 'Ver mis favoritos'}
                 </Button>
                 {loading ? (
-                    <Spinner animation="border" />
+                    <HourglassSpinner />
                 ) : (
                     showFavorites ? (
                         <Favoritos favorites={favorites} />
