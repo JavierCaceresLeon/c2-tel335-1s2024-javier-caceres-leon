@@ -1,29 +1,29 @@
 import React, { useState } from 'react';
-import SearchFacts from './componentes/BuscarFacts';
-import Favorites from './componentes/Favoritos';
-import Header from './componentes/header';
+import BuscarFacts from './componentes/BuscarFacts';
+import Favoritos from './componentes/Favoritos';
+import Header from './componentes/Header';
 import './App.css';
 
 const App = () => {
-    const [favorites, setFavorites] = useState([]);
-    const [showFavorites, setShowFavorites] = useState(false);
+    const [favoritos, setFavoritos] = useState([]);
+    const [mostrarFavoritos, setMostrarFavoritos] = useState(false);
 
-    const addToFavorites = (fact) => {
-        if (!favorites.some((fav) => fav.id === fact.id)) {
-            setFavorites([...favorites, fact]);
+    const agregarAfavoritos = (fact) => {
+        if (!favoritos.some((fav) => fav.id === fact.id)) {
+            setFavoritos([...favoritos, fact]);
         }
     };
 
     return (
         <div>
           <Header course="Control 2: React/Axios" detail="TEL335 1s2024"/>
-            <button onClick={() => setShowFavorites(!showFavorites)}>
-                {showFavorites ? 'Buscar Facts' : 'Ver mis favoritos'}
+            <button onClick={() => setMostrarFavoritos(!mostrarFavoritos)}>
+                {mostrarFavoritos ? 'Buscar Facts' : 'Ver mis favoritos'}
             </button>
-            {showFavorites ? (
-                <Favorites favorites={favorites} />
+            {mostrarFavoritos ? (
+                <Favoritos favorites={favoritos} />
             ) : (
-                <SearchFacts addToFavorites={addToFavorites} />
+                <BuscarFacts agregarAfavoritos={agregarAfavoritos} />
             )}
         </div>
     );

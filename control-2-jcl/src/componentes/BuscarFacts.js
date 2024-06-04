@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import FactItem from './ItemFact';
 
-const SearchFacts = ({ addToFavorites }) => {
+const BuscarFacts = ({ addToFavorites }) => {
     const [query, setQuery] = useState('');
     const [facts, setFacts] = useState([]);
     const [error, setError] = useState(null);
@@ -13,7 +13,7 @@ const SearchFacts = ({ addToFavorites }) => {
             setFacts(response.data.result);
             setError(null);
         } catch (err) {
-            setError('Error fetching facts');
+            setError('Error al obtener datos');
         }
     };
 
@@ -36,4 +36,4 @@ const SearchFacts = ({ addToFavorites }) => {
     );
 };
 
-export default SearchFacts;
+export default BuscarFacts;
